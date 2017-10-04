@@ -21,7 +21,13 @@ public class Sudoku {
 	private void construct(String sudokuList) {		
 		for(int i=0,ij=0;i<9;i++) {
 			for(int j=0;j<9;j++,ij++) {
-				sudoku[i][j] = Character.getNumericValue(sudokuList.charAt(ij));
+				if(Character.getNumericValue(sudokuList.charAt(ij))>0) {
+					sudoku[i][j] = Character.getNumericValue(sudokuList.charAt(ij))*-1;
+				} else {
+					sudoku[i][j] = 0;
+				}
+				
+				
 			}
 		}
 	}
