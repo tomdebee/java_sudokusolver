@@ -3,23 +3,28 @@ package sudoku;
 public class SudokuInit {
 	public static void main (String[] args) {
 		
-		//String input = args[0];
-		String input = "000820090500000000308040007100000040006402503000090010093004000004035200000700900";
+		long time1 = System.nanoTime();
+		int n=0;
 		
-		Sudoku sudokuToSolve = new Sudoku(input);
-		sudokuToSolve.displaySudoku();
+		for(String sudokuString : args) {
+			n++;
+			
+			sudokuString = sudokuString.trim();
+			long timeN1 = System.nanoTime();
+			
+			Sudoku sudokuToSolve = new Sudoku(sudokuString);
+			Solver.iterInit(sudokuToSolve);
+			
+			long timeN2 = System.nanoTime();
+			int millisecs = (int)((timeN2-timeN1)/1000000);
+			
+			System.out.println("Sudoku no. " + n +" solved in: " + millisecs + "ms\n");
+		}
 		
-//		boolean result = Solver.hasRowIntegrity(sudokuToSolve.getSudoku());
-//		boolean result2 = Solver.hasColumnIntegrity(sudokuToSolve.getSudoku());
-//		boolean result3 = Solver.hasBlockIntegrity(sudokuToSolve.getSudoku());
-//		System.out.println(result);
-//		System.out.println(result2);
-//		System.out.println(result3);
+		long time2 = System.nanoTime();
+		int millisecs = (int)((time2-time1)/1000000);
 		
-		System.out.println(Solver.hasIntegrity(sudokuToSolve.getSudoku()));
-		Solver.bruteForceDepth(sudokuToSolve);
-		sudokuToSolve.displaySudoku();
-		
+		System.out.println("Solved all in: " + millisecs + " milliseconds");
 		
 	}
 }
