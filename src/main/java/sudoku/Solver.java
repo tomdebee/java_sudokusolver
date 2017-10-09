@@ -24,7 +24,6 @@ public class Solver {
 							break;
 						} 
 						sudokuToSolve.displaySudoku();
-						System.out.println();
 					} 
 					
 				}
@@ -34,9 +33,6 @@ public class Solver {
 					xy--;
 				}
 			}
-	//	}
-		
-		
 		return solvedSudoku;
 	}
 	
@@ -48,7 +44,6 @@ public class Solver {
 		return xy % 9;
 	}
 	
-	
 	static void displaySudokuArray(int[][] arraySudoku) {
 		for(int i=0;i<9;i++) {
 			for(int j=0;j<9;j++) {
@@ -57,8 +52,7 @@ public class Solver {
 				} else {
 					System.out.print(arraySudoku[i][j] + " ");
 				}
-					
-				
+
 				if(j%3 == 2) { 
 					System.out.print(" ");
 				}
@@ -68,7 +62,6 @@ public class Solver {
 				System.out.print("\n");
 			}
 		}
-		System.out.println("\n");
 	}
 	
 	static int guessIter(int[][] arraySudoku, int xy) {
@@ -78,7 +71,6 @@ public class Solver {
 		int value = 1;
 		if(arraySudoku[x][y]<0) {
 			value = arraySudoku[x][y];
-		//	displaySudokuArray(arraySudoku);
 			guessIter(arraySudoku, xy+1);
 		} 
 		
@@ -89,7 +81,6 @@ public class Solver {
 				}
 				arraySudoku[x][y] = value;
 				solvedSudoku=arraySudoku;
-				//displaySudokuArray(arraySudoku);
 				if(hasIntegrity(arraySudoku)) {
 					if(guessIter(arraySudoku, xy+1)==10) {
 						continue;
@@ -114,15 +105,9 @@ public class Solver {
 		guessIter(sudokuToSolve.getSudoku(),0);
 		} catch (Exception e) {
 		} finally {
-			System.out.print("SOLVED: \n");
 			displaySudokuArray(solvedSudoku);
 		}
 	}
-	
-	
-	
-	
-	
 	
 	static boolean hasIntegrity(int[][] sudoku) {
 		if(hasBlockIntegrity(sudoku) && hasRowIntegrity(sudoku) && hasColumnIntegrity(sudoku)) {
@@ -152,9 +137,6 @@ public class Solver {
 						if(checkNo!=0 && !block.contains(checkNo)) {
 							block.add(checkNo);
 						} else if (block.contains(checkNo)) {
-	//						System.out.println("Integrity failed on block " + (yblock+1) + "," + (xblock+1)
-	//								+ " (" + (y+1) + "," + (x+1) + ")" 
-	//								);
 							integrity = false;
 						}
 					}
@@ -183,7 +165,6 @@ public class Solver {
 				if(checkNo!=0 && !row.contains(checkNo)) {
 					row.add(checkNo);
 				} else if (row.contains(checkNo)) {
-	//				System.out.println("Integrity failed on column " + (y+1));
 					integrity = false;
 				}
 			}
@@ -207,7 +188,6 @@ public class Solver {
 				if(checkNo!=0 && !column.contains(checkNo)) {
 					column.add(checkNo);
 				} else if (column.contains(checkNo)) {
-	//				System.out.println("Integrity failed on row " + (x+1));
 					integrity = false;
 				}
 			}
